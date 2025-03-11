@@ -44,7 +44,7 @@ const DrugPage = () => {
 
   return (
     <div>
-      <h1>Drug Management</h1>
+      <h1>Drug Submission</h1>
       <DrugForm onDrugSubmit={fetchDrugs} /> {/* Pass fetchDrugs as a prop */}
       <DrugList drugs={drugs} />
     </div>

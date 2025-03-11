@@ -28,32 +28,32 @@ const AdminPage = () => {
   return (
     <div className="container mt-5">
     <h1 className="text-center mb-4">Admin Dashboard</h1>
-    <div className="">
-      <div className="col-md-4 mb-4">
-        <div className="">
+    
+      <div className="col-md-8 mb-5 ">
+        
           <div className="card-body">
-            <h5 className="card-title">Approve Users</h5>
+            
             <ApproveUser />
-          </div>
+          
         </div>
       </div>
-      <div className="col-md-4 mb-4">
-        <div className="">
+      <div className="col-md-5 mb-4">
+        
           <div className="card-body">
-            <h5 className="card-title">Pending Requests</h5>
+            
             <PendingRequests />
           </div>
-        </div>
+        
       </div>
       <div className="col-md-4 mb-4">
         <div className="">
           <div className="card-body">
-            <h5 className="card-title">Approved Users</h5>
+            
             <ApprovedUsers />
           </div>
         </div>
       </div>
-    </div>
+    
   </div>
   );
 };

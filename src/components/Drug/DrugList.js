@@ -1,30 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const DrugList = ({ drugs }) => {
   return (
-    <div>
+    <div className="table-container">
       <h2>Drug List</h2>
-      <ul>
-        {drugs.map((drug) => (
-          <li key={drug._id}>
-            <p>Name: {drug.name}</p>
-            <p>Price: {drug.price}</p>
-            <p>Expiry Date: {new Date(drug.expiryDate * 1000).toLocaleDateString()}</p>
-            <p>Country of Origin: {drug.countryOfOrigin}</p>
-            <p>Country of Provenance: {drug.countryOfProvenance}</p>
-            {drug.hashScanLink && (
-              <p>
-                Transaction Details:{" "}
-                <a href={drug.hashScanLink} target="_blank" rel="noopener noreferrer">
-                  View on HashScan
-                </a>
-              </p>
-            )}
-            <Link to={`/drugs/${drug.transactionId}`}>View Details</Link>
-          </li>
-        ))}
-      </ul>
+      <table className="table-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Expiry Date</th>
+            <th>Country of Origin</th>
+            <th>Country of Provenance</th>
+            <th>Transaction Details</th>
+            <th>View Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {drugs.map((drug) => (
+            <tr key={drug._id}>
+              <td>{drug.name}</td>
+              <td>{drug.price}</td>
+              <td>{new Date(drug.expiryDate * 1000).toLocaleDateString()}</td>
+              <td>{drug.countryOfOrigin}</td>
+              <td>{drug.countryOfProvenance}</td>
+              <td>
+                {drug.hashScanLink && (
+                  <a
+                    href={drug.hashScanLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hashscan-link"
+                  >
+                    View on HashScan
+                  </a>
+                )}
+              </td>
+              <td>
+                <Link to={`/drugs/${drug.transactionId}`} className="details-link">
+                  View Details
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

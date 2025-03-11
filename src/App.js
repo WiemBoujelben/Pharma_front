@@ -10,13 +10,17 @@ import DrugDetails from "./pages/DrugDetails";
 
 import Login from"./pages/Login";
 import Register from"./pages/Register";
-
+import Home from "./pages/HomePage";
+import Navbar from "./components/Navbar";
 function App() {
   return (
     <Router>
+      <div>
+      <Navbar />
       <div className="center-card">
       <div className="transparent-card">
       <Routes>
+      <Route path="/" element={<Home />} /> 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<AdminPage />} />
@@ -26,6 +30,7 @@ function App() {
 
         
       </Routes>
+      </div>
       </div>
       </div>
     </Router>

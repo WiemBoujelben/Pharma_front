@@ -20,25 +20,38 @@ const ApprovedUsers = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Approved Users</h2>
-      <ul>
+    <div className="table-container">
+    <h2>Approved Users</h2>
+    <table className="table-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Role</th>
+          <th>Approval Transaction</th>
+        </tr>
+      </thead>
+      <tbody>
         {approvedUsers.map((user) => (
-          <li key={user._id}>
-            <p>Wallet: {user.wallet}</p>
-            <p>Role: {user.role}</p>
-            {user.approvalHashScanLink && (
-              <p>
-                Approval Transaction:{" "}
-                <a href={user.approvalHashScanLink} target="_blank" rel="noopener noreferrer">
+          <tr key={user._id}>
+            <td>{user.wallet}</td>
+            <td>{user.role}</td>
+            <td>
+              {user.approvalHashScanLink && (
+                <a
+                  href={user.approvalHashScanLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hashscan-link"
+                >
                   View on HashScan
                 </a>
-              </p>
-            )}
-          </li>
+              )}
+            </td>
+          </tr>
         ))}
-      </ul>
-    </div>
+      </tbody>
+    </table>
+  </div>
   );
 };
 

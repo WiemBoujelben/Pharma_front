@@ -16,9 +16,15 @@ const ApproveUser = () => {
       );
       setApprovalLink(response.data.hashScanLink);
       alert(response.data.message);
-      console.log("User approved successfully:", response.data.user); // Debug log
+      console.log("User approved successfully:", response.data.user);
     } catch (err) {
-      setError(err.response?.data?.message || "An error occurred");
+      if (err.response?.status === 500) {
+        setError("Server error: Unable to approve user. Please try again later.");
+      } else if (err.response?.status === 404) {
+        setError("User not found.");
+      } else {
+        setError("An unexpected error occurred.");
+      }
       console.error("Error approving user:", err);
     }
   };

@@ -20,25 +20,38 @@ const PendingRequests = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Pending Requests</h2>
-      <ul>
+    <div className="table-container">
+    <h2>Pending Requests</h2>
+    <table className="table-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Role</th>
+          <th>Registration Transaction</th>
+        </tr>
+      </thead>
+      <tbody>
         {requests.map((request) => (
-          <li key={request._id}>
-            <p>Wallet: {request.wallet}</p>
-            <p>Role: {request.role}</p>
-            {request.registrationHashScanLink && (
-              <p>
-                Registration Transaction:{" "}
-                <a href={request.registrationHashScanLink} target="_blank" rel="noopener noreferrer">
+          <tr key={request._id}>
+            <td>{request.wallet}</td>
+            <td>{request.role}</td>
+            <td>
+              {request.registrationHashScanLink && (
+                <a
+                  href={request.registrationHashScanLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hashscan-link"
+                >
                   View on HashScan
                 </a>
-              </p>
-            )}
-          </li>
+              )}
+            </td>
+          </tr>
         ))}
-      </ul>
-    </div>
+      </tbody>
+    </table>
+  </div>
   );
 };
 

@@ -11,6 +11,7 @@ const DrugDetails = () => {
   useEffect(() => {
     const fetchDrugDetails = async () => {
       try {
+        console.log("Fetching drug details for transactionId:", transactionId); // Log the transactionId
         const response = await axios.get(
           `http://localhost:5000/api/drugs/${transactionId}`,
           { withCredentials: true }
