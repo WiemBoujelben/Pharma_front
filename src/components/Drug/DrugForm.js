@@ -47,7 +47,7 @@ const DrugForm = ({ onSubmit }) => {
       const [selectedAccount, provider, network] = await walletConnectFcn();
   
       // Step 2: Execute the contract function
-      const contractAddress = "0xAc40c9C8dADE7B9CF37aEBb49Ab49485eBD3510d"; // Replace with your contract address
+      const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138"; // Replace with your contract address
       const gasLimit = 1000000; // Adjust gas limit as needed
   
       // Call the contract execution function
