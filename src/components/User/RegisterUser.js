@@ -40,7 +40,7 @@ const RegisterUser = () => {
 
     try {
       // Step 1: Execute the contract function
-      const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138"; // Replace with your contract address
+       // Replace with your contract address
       const gasLimit = 1000000; // Adjust gas limit as needed
 
       // Convert role to uint8
@@ -54,14 +54,14 @@ const RegisterUser = () => {
       console.log("Calling contract with:", {
         wallet: connectedWallet,
         roleIndex,
-        contractAddress,
+        
         gasLimit,
       });
 
       // Call the contract execution function
       const [txHash] = await contractExecuteFcn(
         [connectedWallet, provider, network],
-        contractAddress,
+        
         "registerUser", // Replace with your contract function name
         [connectedWallet, roleIndex], // Function arguments
         gasLimit
