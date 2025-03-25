@@ -18,6 +18,12 @@ const abi=[
 				"internalType": "string",
 				"name": "pctCode",
 				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "approvedBy",
+				"type": "address"
 			}
 		],
 		"name": "DrugApproved",
@@ -180,38 +186,68 @@ const abi=[
 			},
 			{
 				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "expiryDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "countryOfOrigin",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "countryOfProvenance",
+				"name": "pctCode",
 				"type": "string"
 			},
 			{
 				"internalType": "enum PharmaSupplyChain.DrugStatus",
 				"name": "status",
 				"type": "uint8"
-			},
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "drugId",
+				"type": "uint256"
+			}
+		],
+		"name": "getCurrentHolder",
+		"outputs": [
 			{
 				"internalType": "address",
-				"name": "manufacturer",
+				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "drugId",
+				"type": "uint256"
+			}
+		],
+		"name": "getDrugHistory",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "holder",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "role",
+						"type": "string"
+					}
+				],
+				"internalType": "struct PharmaSupplyChain.HolderHistory[]",
+				"name": "",
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -281,33 +317,7 @@ const abi=[
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "price",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "expiryDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "countryOfOrigin",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "countryOfProvenance",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"name": "submitDrug",
 		"outputs": [],
 		"stateMutability": "nonpayable",

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const DrugList = ({ drugs }) => {
   return (
     <div className="table-container">
@@ -11,9 +10,10 @@ const DrugList = ({ drugs }) => {
           <tr>
             <th>Name</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Expiry Date</th>
             <th>Country of Origin</th>
-            <th>Country of Provenance</th>
+            <th>Current Holder</th>
             <th>Transaction Details</th>
             <th>View Details</th>
           </tr>
@@ -23,9 +23,10 @@ const DrugList = ({ drugs }) => {
             <tr key={drug._id}>
               <td>{drug.name}</td>
               <td>{drug.price}</td>
+              <td>{drug.quantity}</td>
               <td>{new Date(drug.expiryDate * 1000).toLocaleDateString()}</td>
               <td>{drug.countryOfOrigin}</td>
-              <td>{drug.countryOfProvenance}</td>
+              <td>{drug.currentHolder}</td>
               <td>
                 {drug.hashScanLink && (
                   <a

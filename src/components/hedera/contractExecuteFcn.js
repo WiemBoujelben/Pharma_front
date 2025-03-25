@@ -1,7 +1,8 @@
 import abi from "../../contracts/abi.js";
 import { ethers } from "ethers";
 
-async function contractExecuteFcn(walletData, contractAddress, functionName, functionArgs, gasLimit) {
+async function contractExecuteFcn(walletData,  functionName, functionArgs, gasLimit) {
+  const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
   console.log(`\n=======================================`);
   console.log(`- Executing the smart contract...🟠`);
 
