@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is imported
- // Import custom CSS for the navbar
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
+  
+
+  const toggleTheme = () => {
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    document.body.className = newTheme ? 'dark' : 'light';
+  };
   return (
     <nav className="navbar navbar-expand-lg navbar-custom">
       <div className="container-fluid">
@@ -22,7 +29,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link className="nav-link" to="/users">
                 Register
@@ -39,10 +46,21 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <div className="form-check form-switch">
+        <input 
+          className="form-check-input" 
+          type="checkbox" 
+          id="themeToggle"
+          checked={!darkMode}
+          onChange={toggleTheme}
+        />
+        <label className="form-check-label" htmlFor="themeToggle">
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </label>
+      </div>
         </div>
       </div>
     </nav>
-  
   );
 };
 

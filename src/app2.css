@@ -1,0 +1,117 @@
+/* app2.css - Light Mode */
+
+/* Body and background */
+body.light {
+    background-image: url('./assets/background2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    position: relative;
+  }
+  
+  body.light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(238, 250, 252, 0.5);
+    z-index: -1;
+  }
+  
+  /* Typography */
+  body.light h1,
+  body.light h2,
+  body.light h3,
+  body.light h4,
+  body.light h5,
+  body.light h6,
+  body.light ul,
+  body.light pre {
+    color: #333 !important;
+  }
+  
+  body.light p {
+    color: #555;
+  }
+  
+  /* Cards */
+  body.light .transparent-card {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Forms */
+  body.light input,
+  body.light textarea,
+  body.light select {
+    border: 1px solid #ced4da;
+    color: #495057;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  body.light input::placeholder,
+  body.light textarea::placeholder,
+  body.light select::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Tables */
+  body.light .table-table th,
+  body.light .table-table td {
+    border: 1px solid #dee2e6;
+    color: #495057;
+  }
+  
+  body.light .table-table th {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  
+  /* Navbar */
+  body.light .navbar-custom {
+    background-color: rgba(248, 249, 250, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  body.light .navbar-custom .navbar-brand,
+  body.light .navbar-custom .nav-link {
+    color: #333 !important;
+  }
+  
+  body.light .navbar-custom .nav-link:hover {
+    color: #555 !important;
+  }
+  
+  body.light .navbar-custom .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  body.light .navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+  
+  /* Form elements */
+  body.light .form-select {
+    background-color: white;
+    color: #495057;
+    border: 1px solid #ced4da;
+  }
+  
+  /* Buttons */
+  body.light button {
+    color: #fff !important;
+    background-color: #3498db !important;
+  }
+  
+  body.light button:hover {
+    background-color: #2980b9 !important;
+  }
+  
+  body.light button:disabled {
+    background-color: #bdc3c7 !important;
+  }

@@ -1,8 +1,7 @@
-// App.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
+import './app2.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminPage from "./pages/AdminPage";
 import DrugPage from "./pages/DrugPage";
@@ -12,13 +11,26 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/HomePage";
 import Navbar from "./components/Navbar";
-import VerifyDrugPage from "./pages/VerifyDrugPage"; // Import the new page
+import VerifyDrugPage from "./pages/VerifyDrugPage";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    // Set initial theme from localStorage or default to dark
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setDarkMode(savedTheme === 'dark');
+      document.body.className = savedTheme;
+    } else {
+      document.body.className = 'dark';
+    }
+  }, []);
+
   return (
     <Router>
-      <div>
-        <Navbar />
+      <div className={`app-container ${darkMode ? 'dark' : 'light'}`}>
+        <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
         <div className="center-card">
           <div className="transparent-card">
             <Routes>
@@ -29,7 +41,7 @@ function App() {
               <Route path="/drugs" element={<DrugPage />} />
               <Route path="/users" element={<UserPage />} />
               <Route path="/drugs/:transactionId" element={<DrugDetails />} />
-              <Route path="/verify" element={<VerifyDrugPage />} /> {/* New route */}
+              <Route path="/verify" element={<VerifyDrugPage />} />
             </Routes>
           </div>
         </div>

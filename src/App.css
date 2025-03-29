@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6,ul {
 
 
 /* Body with Background Image */
-body {
+body.dark {
   margin: 0;
   padding-top: 0;
     background-image: url('./assets/background.jpg'); /* Path to the image */
@@ -28,7 +28,7 @@ body {
 }
 
 /* Overlay */
-body::before {
+body.dark::before {
   content: '';
   position: absolute;
   top: 0;
