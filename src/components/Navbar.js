@@ -23,8 +23,6 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            
-          
             <li className="nav-item">
               <Link className="nav-link" to="/users">
                 Register
@@ -35,11 +33,16 @@ const Navbar = () => {
                 Login
               </Link>
             </li>
-            
+            <li className="nav-item">
+              <Link className="nav-link" to="/verify">
+                Verify Drug
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
+  
   );
 };
 
