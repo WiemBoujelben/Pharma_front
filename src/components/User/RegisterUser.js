@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import axios from "axios";
-import walletConnectFcn from "../hedera/walletConnectFcn"; // Import wallet connection function
-import contractExecuteFcn from "../hedera/contractExecuteFcn"; // Import contract execution function
+import walletConnectFcn from "../hedera/walletConnectFcn";
+import contractExecuteFcn from "../hedera/contractExecuteFcn";
 
 const RegisterUser = () => {
   const [role, setRole] = useState("Manufacturer");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
   const [hashScanLink, setHashScanLink] = useState("");
   const [error, setError] = useState("");
   const [connectedWallet, setConnectedWallet] = useState("");
-  const [provider, setProvider] = useState(null); // Store provider
-  const [network, setNetwork] = useState(null); // Store network
+  const [provider, setProvider] = useState(null);
+  const [network, setNetwork] = useState(null);
 
   // Connect to MetaMask
   const connectWallet = async () => {
     try {
       const [selectedAccount, provider, network] = await walletConnectFcn();
       setConnectedWallet(selectedAccount);
-      setProvider(provider); // Save provider
-      setNetwork(network); // Save network
+      setProvider(provider);
+      setNetwork(network);
       setError("");
     } catch (err) {
       setError("Failed to connect wallet");
@@ -38,12 +42,13 @@ const RegisterUser = () => {
       return;
     }
 
-    try {
-      // Step 1: Execute the contract function
-       // Replace with your contract address
-      const gasLimit = 1000000; // Adjust gas limit as needed
+    if (!fullName || !email || !phone || !location) {
+      setError("All fields are required");
+      return;
+    }
 
-      // Convert role to uint8
+    try {
+      const gasLimit = 1000000;
       const validRoles = ["Manufacturer", "Distributor", "PublicPharmacy", "PrivatePharmacy"];
       const roleIndex = validRoles.indexOf(role);
 
@@ -51,19 +56,11 @@ const RegisterUser = () => {
         throw new Error("Invalid role selected");
       }
 
-      console.log("Calling contract with:", {
-        wallet: connectedWallet,
-        roleIndex,
-        
-        gasLimit,
-      });
-
-      // Call the contract execution function
+      // Execute contract function
       const [txHash] = await contractExecuteFcn(
         [connectedWallet, provider, network],
-        
-        "registerUser", // Replace with your contract function name
-        [connectedWallet, roleIndex], // Function arguments
+        "registerUser",
+        [connectedWallet, roleIndex],
         gasLimit
       );
 
@@ -71,13 +68,12 @@ const RegisterUser = () => {
         throw new Error("Transaction hash is undefined");
       }
 
-      // Generate HashScan link
       const transactionId = txHash;
       const hashScanLink = `https://hashscan.io/testnet/transaction/${transactionId}`;
 
       console.log("Transaction successful. HashScan link:", hashScanLink);
 
-      // Step 2: Send the transaction ID and user details to the backend
+      // Send registration data to the backend
       const response = await axios.post(
         "http://localhost:5000/api/users/register",
         {
@@ -85,12 +81,15 @@ const RegisterUser = () => {
           role,
           transactionId,
           hashScanLink,
+          fullName,
+          email,
+          phone,
+          location,
         },
         { withCredentials: true }
       );
 
-      console.log("Backend response:", response.data); // Log the response data
-
+      console.log("Backend response:", response.data);
       alert(`User registered successfully! Transaction ID: ${transactionId}`);
       setHashScanLink(hashScanLink);
     } catch (err) {
@@ -106,23 +105,49 @@ const RegisterUser = () => {
           Connect Wallet
         </button>
         {connectedWallet && <p>Connected Wallet: {connectedWallet}</p>}
-        <select
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          className="form-select"
-        >
+
+        <input
+          type="text"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          placeholder="Full Name"
+          required
+        />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="tel"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          placeholder="Phone Number"
+          required
+        />
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder="Location"
+          required
+        />
+
+        <select value={role} onChange={(e) => setRole(e.target.value)}>
           <option value="Manufacturer">Manufacturer</option>
           <option value="Distributor">Distributor</option>
           <option value="PublicPharmacy">Public Pharmacy</option>
           <option value="PrivatePharmacy">Private Pharmacy</option>
         </select>
-        <button type="submit" className="form-button">
-          Register
-        </button>
+
+        <button type="submit">Register</button>
       </form>
+
       {hashScanLink && (
-        <p className="hashscan-link">
-          View registration transaction on{" "}
+        <p>
+          View transaction on{" "}
           <a href={hashScanLink} target="_blank" rel="noopener noreferrer">
             HashScan
           </a>
