@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DrugForm from "../components/Drug/DrugForm";
 import DrugList from "../components/Drug/DrugList";
 import axios from "axios";
+import Inventory from "../components/Drug/Inventory";
 
 const DrugPage = () => {
   const [drugs, setDrugs] = useState([]);
@@ -47,6 +48,8 @@ const DrugPage = () => {
       <h1>Drug Submission</h1>
       <DrugForm onDrugSubmit={fetchDrugs} /> {/* Pass fetchDrugs as a prop */}
       <DrugList drugs={drugs} />
+      <Inventory />
+     
     </div>
   );
 };

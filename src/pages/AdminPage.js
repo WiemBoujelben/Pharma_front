@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ApproveUser from "../components/Admin/ApproveUser";
-import PendingRequests from "../components/Admin/PendingRequests";
+
 import ApprovedUsers from "../components/Admin/ApprovedUsers";
 import DrugApproval from "../components/Admin/DrugApproval";
-import Inventory from "../components/Admin/Inventory"; // New import
+import Inventory from "../components/Admin/Inventory";
+import AdminDrugForm from "../components/Admin/AdminDrugForm"; // Import the new form component
 import axios from "axios";
 import UserApproval from "../components/Admin/UserApproval";
 
@@ -33,7 +33,7 @@ const AdminPage = () => {
     <div className="container mt-4">
       <h1 className="text-center mb-4">Admin Dashboard</h1>
       
-      {/* Main Tabs Navigation - Updated with Inventory tab */}
+      {/* Main Tabs Navigation - Updated with Admin Drug Submission tab */}
       <ul className="nav nav-tabs justify-content-center mb-4">
         <li className="nav-item">
           <button
@@ -59,6 +59,14 @@ const AdminPage = () => {
             Drug Inventory
           </button>
         </li>
+        <li className="nav-item">
+          <button
+            className={`nav-link ${activeTab === "addDrug" ? "active" : ""}`}
+            onClick={() => setActiveTab("addDrug")}
+          >
+            Add Drug (Admin)
+          </button>
+        </li>
       </ul>
       
       {/* Tab Contents */}
@@ -73,8 +81,6 @@ const AdminPage = () => {
                 </div>
               </div>
             </div>
-            
-            
             
             <div className="col-md-12 mb-4">
               <div className="">
@@ -95,11 +101,23 @@ const AdminPage = () => {
           </div>
         )}
         
-        {/* New Inventory Tab */}
+        {/* Inventory Tab */}
         {activeTab === "inventory" && (
           <div className="">
             <div className="">
               <Inventory />
+            </div>
+          </div>
+        )}
+        
+        {/* New Admin Drug Submission Tab */}
+        {activeTab === "addDrug" && (
+          <div className="">
+            <div className="">
+              
+              <div className="">
+                <AdminDrugForm />
+              </div>
             </div>
           </div>
         )}
