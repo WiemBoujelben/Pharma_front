@@ -66,6 +66,31 @@ const abi=[
 		"inputs": [
 			{
 				"indexed": true,
+				"internalType": "uint256",
+				"name": "drugId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "pctCode",
+				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "submittedBy",
+				"type": "address"
+			}
+		],
+		"name": "DrugSubmittedByAdmin",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
 				"internalType": "address",
 				"name": "wallet",
 				"type": "address"
@@ -218,6 +243,19 @@ const abi=[
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getDrugCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -319,6 +357,19 @@ const abi=[
 	{
 		"inputs": [],
 		"name": "submitDrug",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "pctCode",
+				"type": "string"
+			}
+		],
+		"name": "submitDrugAsAdmin",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
