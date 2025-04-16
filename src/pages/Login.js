@@ -8,25 +8,27 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Attempting to login with wallet:", wallet); // Debug log
+    console.log("Attempting to login with wallet:", wallet);
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         { wallet },
         { withCredentials: true }
       );
-      console.log("Login response:", response.data); // Log the response
-    
-      // Check if the user is an admin
+      console.log("Login response:", response.data);
+  
+      // Redirect based on role
       if (response.data.isAdmin) {
-        console.log("Redirecting to /admin"); // Log redirection
-        navigate("/admin"); // Redirect to admin dashboard
+        navigate("/admin");
+      } else if (response.data.role === "Manufacturer") {
+        navigate("/drugs");
+      } else if (response.data.role === "Distributor") {
+        navigate("/verify");
       } else {
-        console.log("Redirecting to /drugs"); // Log redirection
-        navigate("/drugs"); // Redirect to user dashboard
+        navigate("/drugs"); // Default route for other roles (if any)
       }
     } catch (err) {
-      console.error("Login error:", err); // Debug log
+      console.error("Login error:", err);
       alert(err.response?.data?.message || "An error occurred");
     }
   };
