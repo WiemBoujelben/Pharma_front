@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Home from "./pages/HomePage";
 import Navbar from "./components/Navbar";
 import VerifyDrugPage from "./pages/VerifyDrugPage";
+import DistributorPage from "./pages/DistributorPage";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -42,6 +43,7 @@ function App() {
               <Route path="/users" element={<UserPage />} />
               <Route path="/drugs/:transactionId" element={<DrugDetails />} />
               <Route path="/verify" element={<VerifyDrugPage />} />
+              <Route path="/distributor" element={<DistributorPage />} />
             </Routes>
           </div>
         </div>

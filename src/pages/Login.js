@@ -23,7 +23,7 @@ const Login = () => {
       } else if (response.data.role === "Manufacturer") {
         navigate("/drugs");
       } else if (response.data.role === "Distributor") {
-        navigate("/verify");
+        navigate("/distributor");
       } else {
         navigate("/drugs"); // Default route for other roles (if any)
       }
