@@ -4,19 +4,16 @@ async function walletConnectFcn() {
   if (!window.ethereum) {
     throw new Error("MetaMask not installed!");
   }
-
   const provider = new ethers.BrowserProvider(window.ethereum);
-  const network = "testnet"; // Force testnet for Hedera
+  const network = "testnet"; 
   const chainId = network === "testnet" ? "0x128" : "0x127"; // Hedera chain IDs
 
   try {
-    // Attempt to switch network first
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId }],
     });
   } catch (switchError) {
-    // If network isn't added, add it
     if (switchError.code === 4902) {
       try {
         await window.ethereum.request({

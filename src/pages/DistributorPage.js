@@ -14,13 +14,36 @@ const DistributorPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Custom styles for tabs - matching AdminPage
+  const tabStyle = {
+    default: {
+      backgroundColor: "#f8f9fa",
+      color: "#495057",
+      border: "1px solid #dee2e6",
+      borderBottom: "none",
+      marginRight: "5px",
+      borderRadius: "5px 5px 0 0",
+      padding: "10px 20px",
+      cursor: "pointer",
+    },
+    active: {
+      backgroundColor: "#007bff",
+      color: "white",
+      borderBottom: "none",
+      marginRight: "5px",
+      borderRadius: "5px 5px 0 0",
+      padding: "10px 20px",
+      cursor: "pointer",
+    }
+  };
+
   // Fetch available drugs
   const fetchAvailableDrugs = async () => {
     try {
       setLoading(true);
       setError("");
       const response = await axios.get(
-        "http://localhost:5000/api/order/available",  // Fixed URL to match your route
+        "http://localhost:5000/api/order/available",
         { withCredentials: true }
       );
       setAvailableDrugs(response.data);
@@ -74,10 +97,11 @@ const DistributorPage = () => {
     <div className="container mt-4">
       <h1 className="text-center mb-4">Distributor Dashboard</h1>
       
-      <ul className="nav nav-tabs justify-content-center mb-4">
+      {/* Updated tabs with matching style */}
+      <ul className="nav nav-tabs justify-content-center mb-4" style={{ borderBottom: "none" }}>
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === "inventory" ? "active" : ""}`}
+            style={activeTab === "inventory" ? tabStyle.active : tabStyle.default}
             onClick={() => setActiveTab("inventory")}
           >
             CentralPharmacy Inventory
@@ -85,7 +109,7 @@ const DistributorPage = () => {
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === "order" ? "active" : ""}`}
+            style={activeTab === "order" ? tabStyle.active : tabStyle.default}
             onClick={() => setActiveTab("order")}
           >
             My Orders ({basketItems.length})
@@ -93,7 +117,7 @@ const DistributorPage = () => {
         </li>
         <li className="nav-item">
           <button
-            className={`nav-link ${activeTab === "orders" ? "active" : ""}`}
+            style={activeTab === "orders" ? tabStyle.active : tabStyle.default}
             onClick={() => setActiveTab("orders")}
           >
             My Inventory

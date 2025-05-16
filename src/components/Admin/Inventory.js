@@ -43,7 +43,6 @@ const Inventory = () => {
             <th>Quantity</th>
             <th>PCT Code</th>
             <th>Expiry Date</th>
-            <th>Current Holder</th>
             <th>Transaction</th>
             <th>Details</th>
           </tr>
@@ -56,7 +55,7 @@ const Inventory = () => {
               <td>{drug.quantity}</td>
               <td>{drug.pctCode}</td>
               <td>{new Date(drug.expiryDate * 1000).toLocaleDateString()}</td>
-              <td>{drug.currentHolder}</td>
+              
               <td>
                 <a
                   href={drug.hashScanLink}

@@ -127,7 +127,7 @@ const Basket = ({ basketItems, onRemoveFromBasket, onClearBasket }) => {
             </tbody>
           </table>
 
-          <div className="basket-actions">
+          <div className="action-buttons">
             <button 
               onClick={submitOrder}
               disabled={loading || !wallet}

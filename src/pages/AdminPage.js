@@ -47,7 +47,6 @@ const AdminPage = () => {
     active: {
       backgroundColor: "#007bff",
       color: "white",
-      border: "3px solid #1b2026",
       borderBottom: "none",
       marginRight: "5px",
       borderRadius: "5px 5px 0 0",
@@ -68,7 +67,6 @@ const AdminPage = () => {
       active: {
         backgroundColor: "#28a745",
         color: "white",
-        border: "3px solid #1b2026",
         borderBottom: "none",
         marginRight: "5px",
         borderRadius: "5px 5px 0 0",

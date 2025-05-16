@@ -25,7 +25,7 @@ const ApprovedUsers = () => {
     <table className="table-table">
       <thead>
         <tr>
-          <th>Wallet</th>
+          <th>Full Name</th>
           <th>Role</th>
           <th>Approval Transaction</th>
         </tr>
@@ -33,7 +33,7 @@ const ApprovedUsers = () => {
       <tbody>
         {approvedUsers.map((user) => (
           <tr key={user._id}>
-            <td>{user.wallet}</td>
+            <td>{user.fullName}</td>
             <td>{user.role}</td>
             <td>
               {user.approvalHashScanLink && (

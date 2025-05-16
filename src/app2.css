@@ -409,8 +409,24 @@ body.light {
   }
   
   /* Buttons */
+  .action-buttons {
+    display: flex;
+    gap: 16px; /* This creates space between the buttons */
+    margin-top: 20px;
+  }
   body.light button {
-    color: #fff !important;
+    padding: 12px 24px;
+
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     background-color: #3498db !important;
   }
   

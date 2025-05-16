@@ -185,7 +185,7 @@ const DrugApproval = () => {
           <tr>
             <th>Select</th>
             <th>Name</th>
-            <th>Current Holder</th>
+            
             <th>Transaction Details</th>
             <th>Date Submitted</th>
             <th>View Details</th>
@@ -207,7 +207,7 @@ const DrugApproval = () => {
                 />
               </td>
               <td>{drug.name}</td>
-              <td>{drug.currentHolder}</td>
+              
               <td>
                 {drug.hashScanLink && (
                   <a

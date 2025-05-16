@@ -170,10 +170,9 @@ const UserApproval = () => {
         <thead>
           <tr>
             <th>Select</th>
-            <th>Wallet</th>
+            <th>Full Name</th>
             <th>Role</th>
             <th>Registration Transaction</th>
-            <th>Date Submitted</th>
           </tr>
         </thead>
         <tbody>
@@ -191,7 +190,7 @@ const UserApproval = () => {
                   onChange={() => setSelectedUser(request)}
                 />
               </td>
-              <td>{request.wallet}</td>
+              <td>{request.fullName}</td>
               <td>{request.role}</td>
               <td>
                 {request.registrationHashScanLink && (
@@ -205,9 +204,7 @@ const UserApproval = () => {
                   </a>
                 )}
               </td>
-              <td>
-                {new Date(request.createdAt).toLocaleDateString()}
-              </td>
+
             </tr>
           ))}
         </tbody>

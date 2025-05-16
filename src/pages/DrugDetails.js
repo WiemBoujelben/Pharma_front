@@ -148,8 +148,8 @@ const DrugDetails = () => {
             <thead>
               <tr>
                 <th>Date & Time</th>
-                <th>Role</th>
                 <th>Holder</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -157,7 +157,6 @@ const DrugDetails = () => {
                 <tr key={index}>
                   <td>{new Date(entry.timestamp * 1000).toLocaleString()}</td>
                   <td>{entry.role || "Unknown role"}</td>
-                  <td>{entry.holder || "Unknown holder"}</td>
                 </tr>
               ))}
             </tbody>
